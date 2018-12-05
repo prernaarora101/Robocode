@@ -45,6 +45,8 @@ public class TinkyWinky extends TeamRobot
 
     public void onScannedRobot(ScannedRobotEvent e)
     {
+        //scan infinitly, then scan span gets smaller as you move
+        //get distance between you and robot, moving closer by an amount, as the distance decreases, so does how far you move
         targetName = e.getName();
         int x = Integer.MIN_VALUE;
         int y = Integer.MIN_VALUE;
