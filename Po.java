@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 //dont run into teammates, scan (locking?) better, shoot better
 
-//po
+//po hello
 
 //random movement and predictive targeting
 
