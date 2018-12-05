@@ -22,25 +22,7 @@ public class Dipsy extends TeamRobot
 
     public void onScannedRobot (ScannedRobotEvent e) {
 
-        if (e.getName().contains("LaaLaa") || e.getName().contains("TinkyWinky") || e.getName().contains("Po")) {
-            turnLeft(90);
-            ahead(50);
 
-        }
-        if (e.getVelocity() == 0 || e.getVelocity() < .03) {
-            turnLeft(e.getBearing());
-            ahead(e.getDistance());
-            setAhead(50);
-            //setFire(Rules.MAX_BULLET_POWER);
-            execute();
-        }
-        else {
-            turnLeft(e.getBearing());
-            ahead(e.getDistance());
-            setAhead(15);
-            setFire(Rules.MAX_BULLET_POWER);
-            execute();
-        }
     }
     public void onHitRobot (HitRobotEvent e) {
 
@@ -87,20 +69,45 @@ public class Dipsy extends TeamRobot
 
 
     //communication strategy
-    public void broadcastMessage (Serializable e) throws IndexOutOfBoundsException
-    {
+     // logic based on message and get rid of the scanning
+    public void onMessageRecieved ( ScannedRobotEvent e) {
+        
+        //Serializable message = e.getMessage();
+        //System.out.println(message + " got em!");
+       // Point x = (Point) e.getMessage();
+
+        if (e.getName().contains("LaaLaa") || e.getName().contains("TinkyWinky") || e.getName().contains("Po")) {
+            turnLeft(90);
+            ahead(50);
+
+        }
+        if (e.getVelocity() == 0 || e.getVelocity() < .03) {
+            turnLeft(e.getBearing());
+            ahead(e.getDistance());
+            setAhead(50);
+            //setFire(Rules.MAX_BULLET_POWER);
+            execute();
+        }
+        else {
+            turnLeft(e.getBearing());
+            ahead(e.getDistance());
+            setAhead(15);
+            setFire(Rules.MAX_BULLET_POWER);
+            execute();
+        }
 
     }
-    public void onMessageRecieved (MessageEvent e) {
-        Serializable message = e.getMessage();
-        System.out.println(message + "got em!");
-        Point x = (Point) e.getMessage();
+
+    private void goTo(int x, int y) {
+        double a;
+        setTurnRightRadians(Math.tan(
+                a = Math.atan2(x -= (int) getX(), y -= (int) getY())
+                        - getHeadingRadians()));
+        setAhead(Math.hypot(x, y) * Math.cos(a));
 
     }
 
-    public void goTo (Point x, Point y) {
 
-    }
 
 
 
