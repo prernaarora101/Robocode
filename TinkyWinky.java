@@ -27,12 +27,14 @@ public class TinkyWinky extends TeamRobot
 
         while (true)
         {
-            //setTurnRadarRight(Double.POSITIVE_INFINITY);
+            setTurnRadarRight(Double.POSITIVE_INFINITY);
+            //setAdjustRadarForGunTurn(true);
+            setAdjustGunForRobotTurn(false);
             setBack(100);
             turnLeft(360);
             if (getTime() % 10 == 0)
             {
-                double distance = Math.random();
+                double distance = Math.random() * 3000;
                 setTurnRight(distance);
                 ahead(distance);
                 execute();
@@ -51,7 +53,7 @@ public class TinkyWinky extends TeamRobot
         y = (int)(getY() +Math.cos(angle) * e.getDistance());
 
         try {
-            broadcastMessage(new Point(x, y));
+            broadcastMessage(e);
         }catch(IOException ignored)
         {
         }
@@ -66,7 +68,9 @@ public class TinkyWinky extends TeamRobot
        {
            doNothing();
        }*/
-        //setTurnRadarLeftRadians(getRadarTurnRemainingRadians());
+        setTurnRadarLeftRadians(getRadarTurnRemainingRadians());
+
+
         setAhead(100 * Math.sin(getTime() / 4));
         //oscillating from robowiki
         execute();
@@ -80,22 +84,26 @@ public class TinkyWinky extends TeamRobot
         }
         else if (distance < 200 && getGunHeat() == 0)
         {
+            setTurnRight(90 + e.getBearing());
             setFire(Rules.MAX_BULLET_POWER);
             execute();
         }
         else if (distance < 500 && getGunHeat() == 0)
         {
+            setTurnRight(90 + e.getBearing());
             setFire(2);
             execute();
         }
         else if (distance < 800 && getGunHeat() == 0)
         {
+            setTurnRight(90 + e.getBearing());
             setFire(1.5);
             execute();
         }
         else {
             if (getGunHeat() == 0)
             {
+                setTurnRight(90 + e.getBearing());
                 setFire(.5);
                 execute();
             }
@@ -118,8 +126,9 @@ public class TinkyWinky extends TeamRobot
         double energy = getEnergy();
         if (e.getName().equals("edu.ufl.cise.cs1.robots.Po*") || e.getName().equals("edu.ufl.cise.cs1.robots.LaaLaa*") || e.getName().equals("edu.ufl.cise.cs1.robots.Dispsy*")) {
             //back(180);
-            turnRight(180);
-            ahead(100);
+            //turnRight(180);
+            //ahead(100);
+            doNothing();
         }
         else {
             double bearing = e.getBearing();
@@ -191,7 +200,6 @@ public class TinkyWinky extends TeamRobot
             setBack(40);
             setAhead(80);
             execute();
-
         }
     }
 
