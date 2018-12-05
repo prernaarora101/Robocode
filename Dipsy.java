@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 public class Dipsy extends TeamRobot
 {
-
+    //Hello I need to clean my keyboard guys pls help
     public void run () {
         setBulletColor(Color.red);
         setRadarColor(Color.blue);
