@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 //dont run into teammates, scan (locking?) better, shoot better
 
-//po hello
+//po
 
 //random movement and predictive targeting
 
@@ -24,27 +24,29 @@ public class Po extends TeamRobot
         setAdjustRadarForGunTurn(true);
         //setAdjustRadarForRobotTurn(true);
 
-        setTurnRadarRight(360);
+        //setTurnRadarRight(360);
+        //turnRadarRightRadians(Double.POSITIVE_INFINITY);
 
         while (true)
         {
-            setTurnRadarRight(360);
+           /*if ((getBattleFieldWidth() - getX() < 60) || (getBattleFieldHeight() - getY() < 60))
+           {
+               setTurnRight(90);
+               ahead(100);
+               execute();
+           }*/
+
+            //setTurnRadarRight(360);
+            setTurnRadarRightRadians(Double.POSITIVE_INFINITY);
+
             if (getTime() % 10 == 0)
             {
                 setTurnRight(90);
             }
-            //turnRadarRight(45);
 
-            ahead(100);
+            setAhead(100);
             execute();
 
-
-            //turnGunRight(45);
-            //turnRadarRight(45);
-            //scan();
-
-
-            //setTurnRight(enemy.getBearing() + 90);
 
         }
 
@@ -77,10 +79,13 @@ public class Po extends TeamRobot
                 setTurnGunRight(getHeading() - getGunHeading() + e.getBearing());
                 setFire(1200 / (e.getDistance()));
             }
+            setTurnRadarRight(getHeading() - getRadarHeading() + e.getBearing());
 
             execute();
         }
 
+        setTurnRadarLeftRadians(getRadarTurnRemainingRadians());
+        execute();
     }
 
     public void onHitWall(HitWallEvent e)
@@ -133,3 +138,4 @@ public class Po extends TeamRobot
     // learn how to aim at target
 
 }
+
