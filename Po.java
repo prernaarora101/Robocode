@@ -29,12 +29,12 @@ public class Po extends TeamRobot
 
         while (true)
         {
-           /*if ((getBattleFieldWidth() - getX() < 60) || (getBattleFieldHeight() - getY() < 60))
+           if ((getBattleFieldWidth() - getX() < 60) || (getBattleFieldHeight() - getY() < 60)) // DOES THIS WORK?
            {
+               setBack(100);
                setTurnRight(90);
-               ahead(100);
                execute();
-           }*/
+           }
 
             //setTurnRadarRight(360);
             setTurnRadarRightRadians(Double.POSITIVE_INFINITY);
