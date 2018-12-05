@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class LaaLaa extends TeamRobot
 {
     Robot target = new Robot();
-    //asdlfklksjfd
+    //asdlfklksjfd salkfjalsdjflasdfklajfoijs
     public void run() {
 
         setBulletColor(Color.red);
